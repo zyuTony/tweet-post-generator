@@ -1,0 +1,7 @@
+tweepy 
+requests 
+pandas 
+numpy 
+openai
+flask
+re

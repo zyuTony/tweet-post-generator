@@ -1,0 +1,4 @@
+twitter_bot/
+__pycache__/
+*.pyc
+*.pyo
