@@ -1,14 +1,17 @@
 import tweepy
 import logging
 
+from dotenv import load_dotenv
+import os 
 
-bearer_token = "AAAAAAAAAAAAAAAAAAAAAI6zrQEAAAAA2czZFNpCmk3PkA7PxvJJmgZgw3I%3DMLHxcU57DnkRreygJIYRjjSwYx3J4lWfLKm6e5PDxyqPgVhYUL"
-client_id = "UEZWOTBYUFBUMXYzTnpOS1dLWHY6MTpjaQ"
-client_secret = "icK0T8UUVbqzMaomh-W-hoAr-ZVqveH9c3AzqIuvQKJ0pSSmCy"
-api_key = "FE1Qi2Mh866mpyshjO0A9POAJ"
-api_secret = "Fussjmc3OqNX3zjRMpwEKbyDmuWmrem6Ubv7tFxj8BJ5kk32C5"
-access_token = "1138631920873484288-brALlkViJgpDrk5b4GMER3ypXkrTaz" 
-access_secret = "K0MdWhU1Ca7sCBrQHOX1S5CaldyAv7oSOoQJRcByw4mrB"  
+load_dotenv()
+bearer_token = os.getenv('bearer_token')
+client_id = os.getenv('twit_client_id')
+client_secret = os.getenv('twit_client_secret')
+api_key = os.getenv('twit_api_key')
+api_secret = os.getenv('twit_api_secret')
+access_token = os.getenv('twit_access_token')
+access_secret = os.getenv('twit_access_secret')
 
 # v1 auth and create API
 auth = tweepy.OAuth1UserHandler(api_key, api_secret, access_token, access_secret)

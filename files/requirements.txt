@@ -5,3 +5,4 @@ numpy
 openai
 flask
 re
+python-dotenv

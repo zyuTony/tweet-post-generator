@@ -3,13 +3,16 @@ import re
 import json
 from tweet_it import tweet_it
 import requests
-####################API key##########################
-api_key = "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"
-####################API key##########################
+from dotenv import load_dotenv
+import os 
+load_dotenv()
 
-local_img_path = './imgs/latest_generation'
+OAI_api_key = os.getenv('OAI_api_key')
+
+base_path = './imgs/dalle_generation'
+extension = 'jpeg'
 # start client
-client = OpenAI(api_key=api_key)
+client = OpenAI(api_key=OAI_api_key)
 
 
 def save_messages(messages, file_path):

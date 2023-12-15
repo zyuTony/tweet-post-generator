@@ -1,15 +1,21 @@
 import tweepy
 import logging
-####################API key##########################
-bearer_token = "AAAAAAAAAAAAAAAAAAAAAI6zrQEAAAAA2czZFNpCmk3PkA7PxvJJmgZgw3I%3DMLHxcU57DnkRreygJIYRjjSwYx3J4lWfLKm6e5PDxyqPgVhYUL"
-client_id = "UEZWOTBYUFBUMXYzTnpOS1dLWHY6MTpjaQ"
-client_secret = "icK0T8UUVbqzMaomh-W-hoAr-ZVqveH9c3AzqIuvQKJ0pSSmCy"
-api_key = "FE1Qi2Mh866mpyshjO0A9POAJ"
-api_secret = "Fussjmc3OqNX3zjRMpwEKbyDmuWmrem6Ubv7tFxj8BJ5kk32C5"
-access_token = "1138631920873484288-brALlkViJgpDrk5b4GMER3ypXkrTaz" 
-access_secret = "K0MdWhU1Ca7sCBrQHOX1S5CaldyAv7oSOoQJRcByw4mrB"  
-####################API key##########################
+from dotenv import load_dotenv
+import os 
 import tweepy
+
+# Get API key
+load_dotenv()
+bearer_token = os.getenv('bearer_token') # to auth you as an developer and gain access to public info
+client_id = os.getenv('twit_client_id')
+client_secret = os.getenv('twit_client_secret')
+
+api_key = os.getenv('twit_api_key')
+api_secret = os.getenv('twit_api_secret')
+access_token = os.getenv('twit_access_token') 
+access_secret = os.getenv('twit_access_secret')
+ 
+
 
 def tweet_it(text, img_url=None):
     auth = tweepy.OAuth1UserHandler(api_key, api_secret, access_token, access_secret)
@@ -56,23 +62,4 @@ def tweet_it(text, img_url=None):
     except Exception as e:
         print(f"An error occurred while tweeting: {e}")
 
-# def tweet_it(text, img_url=None):
-#   # v1 auth and create API
-#   auth = tweepy.OAuth1UserHandler(api_key, api_secret, access_token, access_secret)
-#   zyu_api_v1 = tweepy.API(auth)
-#   zyu_api_v2 = tweepy.Client(bearer_token=bearer_token, 
-#                           consumer_key=api_key, 
-#                           consumer_secret=api_secret, 
-#                           access_token=access_token, 
-#                           access_token_secret=access_secret)
-
-#   try:
-#       print(f"Tweeting: {text}")
-#       if not img_url:
-#         zyu_api_v2.create_tweet(text=text, user_auth=True)
-#       else:
-#         media = zyu_api_v1.media_upload(filename=img_url)
-#         zyu_api_v2.create_tweet(text=text, user_auth=True, media_ids=[media.media_id])
-#       print("tweeted succesfully")
-#   except Exception as e:
-#       print(f"An error occurred while tweeting: {e}")
+ 
