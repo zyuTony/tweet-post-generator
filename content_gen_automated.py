@@ -91,10 +91,10 @@ def chat_with_openai(messages, output_file, history_file, option=None):
         save_messages(messages, history_file)
 
 if __name__ == "__main__":
-  history_file = './files/conversation_history.json'
+  history_file = './files/art.json'
   output_file = './files/output.txt'
 
   messages = load_messages(history_file)
-  messages.append({"role": "user", "content": "Strictly limit the generation to 200 characters. Write a different story that you have not written before. Write in slightly different manner, but still follow all the same rules mentioned before. "})
+  messages.append({"role": "user", "content": "Write a different painting that  in different reimagined style. "})
   
   chat_with_openai(messages, output_file, history_file, "tweet_w_img")

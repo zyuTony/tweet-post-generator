@@ -51,12 +51,6 @@ def generate_image(prompt):
         print(f"An error occurred while generating the image: {e}")
 
 def chat_with_openai(messages, output_file, history_file):
-    """
-    Function to interact with OpenAI's chat model, save outputs, and identify links.
-    
-    :param messages: A list of messages in the conversation history.
-    :param output_file: File path to save the conversation.
-    """
     with open(output_file, "a", encoding='utf-8') as file:
         while True:
             new_user_message = input("You: ")
@@ -103,7 +97,7 @@ def chat_with_openai(messages, output_file, history_file):
                 file.write("Links: " + ', '.join(links) + "\n")
 
 if __name__ == "__main__":
-  history_file = './files/conversation_history.json'
+  history_file = './files/art.json'
   output_file = './files/output.txt'
   
   messages = [{"role": "system", "content": "You are good at writing short paragraph that introduce people to some bizarre events that has happened in the past"},

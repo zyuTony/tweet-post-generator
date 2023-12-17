@@ -1,9 +1,9 @@
-import tweepy
-import logging
+import os
+import json
+import requests
+from requests_oauthlib import OAuth1
 from dotenv import load_dotenv
-import os 
-import tweepy
-
+ 
 # Get API key
 load_dotenv()
 bearer_token = os.getenv('bearer_token') # to auth you as an developer and gain access to public info
@@ -14,52 +14,45 @@ api_key = os.getenv('twit_api_key')
 api_secret = os.getenv('twit_api_secret')
 access_token = os.getenv('twit_access_token') 
 access_secret = os.getenv('twit_access_secret')
- 
+
+# URLs for Twitter API
+POST_TWEET_URL = "https://api.twitter.com/2/tweets"
+UPLOAD_MEDIA_URL = "https://upload.twitter.com/1.1/media/upload.json"
+
+def make_oauth(api_key, api_secret, access_token, access_secret):
+    return OAuth1(api_key, api_secret, access_token, access_secret)
+
+def upload_media(oauth, file_path):
+    files = {'media': open(file_path, 'rb')}
+    response = requests.post(UPLOAD_MEDIA_URL, auth=oauth, files=files)
+    if response.status_code != 200:
+        raise Exception(f"Media upload failed: {response.status_code} {response.text}")
+    media_id = response.json()['media_id_string']
+    return media_id
+
+def tweet_with_media(oauth, text, media_id):
+    payload = {
+        "text": text,
+        "media": {
+            "media_ids": [media_id]
+        }
+    }
+    response = requests.post(POST_TWEET_URL, auth=oauth, json=payload)
+    if response.status_code != 201:
+        raise Exception(f"Tweet failed: {response.status_code} {response.text}")
+    return response.json()
+
+def save_messages(messages, file_path):
+    """Save messages to a file."""
+    with open(file_path, 'w', encoding='utf-8') as file:
+        json.dump(messages, file)
+
+def tweet_it(text, img_path):
+    oauth = make_oauth(api_key, api_secret, access_token, access_secret)
+    media_id = upload_media(oauth, img_path)  
+    tweet_response = tweet_with_media(oauth, text, media_id)
+    print(tweet_response)
 
 
-def tweet_it(text, img_url=None):
-    auth = tweepy.OAuth1UserHandler(api_key, api_secret, access_token, access_secret)
-    zyu_api_v1 = tweepy.API(auth)
-    zyu_api_v2 = tweepy.Client(bearer_token=bearer_token, 
-                               consumer_key=api_key, 
-                               consumer_secret=api_secret, 
-                               access_token=access_token, 
-                               access_token_secret=access_secret)
-
-    try:
-        # Twitter character limit per tweet
-        char_limit = 280
-
-        # Split the text into chunks of 280 characters
-        tweets = [text[i:i+char_limit] for i in range(0, len(text), char_limit)]
-
-        # Initialize variables for image and last tweet ID
-        media_id = None
-        last_tweet_id = None
-
-        # If there's an image URL, upload the image first and get the media ID
-        if img_url:
-            media = zyu_api_v1.media_upload(filename=img_url)
-            media_id = media.media_id
-
-        # Tweet each chunk of text in a thread
-        for i, tweet in enumerate(tweets):
-            print(f"Tweeting: {tweet}")
-
-            # Attach image only to the last tweet
-            if i == len(tweets) - 1 and media_id:
-                response = zyu_api_v2.create_tweet(text=tweet, user_auth=True, 
-                                                   media_ids=[media_id],
-                                                   in_reply_to_tweet_id=last_tweet_id)
-            else:
-                response = zyu_api_v2.create_tweet(text=tweet, user_auth=True, 
-                                                   in_reply_to_tweet_id=last_tweet_id)
-
-            # Update the last tweet ID
-            last_tweet_id = response.data['id']
-            print("Tweeted successfully")
-
-    except Exception as e:
-        print(f"An error occurred while tweeting: {e}")
-
- 
+if __name__ == "__main__":
+    tweet_it()
