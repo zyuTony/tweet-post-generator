@@ -1,0 +1,34 @@
+[
+  {
+    "role": "system",
+    "content": "You are knowledgeable at visual arts and can come up creative way to imagine famous painting with diferent artistic style  "
+  },
+  {
+    "role": "user",
+    "content": "Generate one sentence that describe a painting in a different style. For example, Vincent Van Gogh drawn in futuristic style"
+  },
+  {
+    "role": "user",
+    "content": "Strictly limit the generation to 200 characters. Write a different story that you have not written before. Write in slightly different manner, but still follow all the same rules mentioned before. "
+  },
+  {
+    "role": "system",
+    "content": "Claude Monet's \"Water Lilies\" reimagined in a pop art style, vibrant brushstrokes exploring the beauty of nature with bold, exaggerated colors."
+  },
+  {
+    "role": "user",
+    "content": "Write a different painting that  in different reimagined style. "
+  },
+  {
+    "role": "system",
+    "content": "Edvard Munch's \"The Scream\" reimagined in a surrealistic style, distorted figures and dreamlike elements create a disorienting and unsettling atmosphere, amplifying the feeling of existential angst."
+  },
+  {
+    "role": "user",
+    "content": "Write a different painting that  in different reimagined style. "
+  },
+  {
+    "role": "system",
+    "content": "Leonardo da Vinci's \"Mona Lisa\" reimagined in a Cubist style, fractured and fragmented planes depict multiple perspectives simultaneously, challenging the notion of a singular fixed viewpoint."
+  }
+]
