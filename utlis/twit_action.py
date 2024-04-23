@@ -1,5 +1,5 @@
-from tweet_it import *
-from test_functions.twit_engage import *
+from utlis.tweet_it import *
+from utlis.twit_engage import *
 import shared_var
 from shared_var import *
 

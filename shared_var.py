@@ -19,4 +19,5 @@ access_token = os.getenv('twit_access_token')
 access_secret = os.getenv('twit_access_secret')
 
 # my twitter id 
-user_id = "1138631920873484288"
+user_id = os.getenv('twit_user_id')
+

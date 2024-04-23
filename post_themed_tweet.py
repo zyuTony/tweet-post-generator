@@ -1,7 +1,7 @@
 from openai import OpenAI
 import re
 import json
-from tweet_it import tweet_it
+from utlis.tweet_it import tweet_it
 import requests
 from datetime import datetime
 from dotenv import load_dotenv
@@ -90,13 +90,13 @@ def chat_with_openai(messages, output_file, history_file, option=None):
         # save the chat history
         save_messages(messages, history_file)
 
-# if __name__ == "__main__":
-#   history_file = './files/art.json'
-#   output_file = './files/output.txt'
+if __name__ == "__main__":
+  history_file = './files/art.json'
+  output_file = './files/output.txt'
 
-#   messages = load_messages(history_file)
-#   messages.append({"role": "user", "content": "Write a different painting that  in different reimagined style. "})
+  messages = load_messages(history_file)
+  messages.append({"role": "user", "content": "Write a different painting that in different reimagined style. "})
   
-#   chat_with_openai(messages, output_file, history_file, "tweet_w_img")
+  chat_with_openai(messages, output_file, history_file, "tweet_w_img")
 
  

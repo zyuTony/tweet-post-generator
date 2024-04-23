@@ -7,8 +7,8 @@ from datetime import datetime
 from dotenv import load_dotenv
 import os 
 
-from tweet_it import tweet_it
-from text_img_auto_gen import save_messages, load_messages, download_image, generate_image 
+from utlis.tweet_it import tweet_it
+from post_themed_tweet import save_messages, load_messages, download_image, generate_image 
 
 load_dotenv()
 OAI_api_key = os.getenv('OAI_api_key')
@@ -79,6 +79,6 @@ if __name__ == "__main__":
 #   history_file = './files/make_it_more.json'
 #   output_file = './files/make_it_more_output.txt'
     client = OpenAI(api_key=OAI_api_key)
-    orig_prompt = "No text anywhere. Generate a photo-realistic portrait of a human from a society. If being in stone age is 1 and being the most advanced and futuristic society is 5. This society is the at "
+    orig_prompt = "No text anywhere. Generate a photo-realistic portrait of a human from a society. If being in stone age is 1 and being the most advanced and futuristic society is 5. This society is the at 1"
     make_more = "make it more advanced"
-    make_it_more(orig_prompt, make_more, 5)
+    make_it_more(orig_prompt, make_more, 2)

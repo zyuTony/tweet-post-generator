@@ -14,7 +14,7 @@ you need to turn it to
 5. authorization - use auth= to add
 """
 
-from tweet_it import *
+from utlis.tweet_it import *
 import shared_var
 from shared_var import *
  
