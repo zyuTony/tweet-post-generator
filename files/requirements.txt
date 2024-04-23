@@ -1,8 +1,0 @@
-tweepy 
-requests 
-pandas 
-numpy 
-openai
-flask
-re
-python-dotenv

@@ -1,6 +1,7 @@
 from tweet_it import *
-from twit_engage import *
+from test_functions.twit_engage import *
 import shared_var
+from shared_var import *
 
 # 50 requests per 15-minute window per each authenticated user
 def like_tweets(oauth, user_id, tweet_list):

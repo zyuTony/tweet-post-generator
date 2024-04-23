@@ -113,4 +113,4 @@ def tweet_it(text: str, img_path: str, reply_to_id: str=None) -> dict:
 
 
 if __name__ == "__main__":
-    tweet_it()
+    tweet_it('test')
